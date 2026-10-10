@@ -16,7 +16,7 @@ public class RobotRunner2300Pro : MonoBehaviour
     public float tiempoDeslizamiento = 0.8f;
     public float alturaNormal = 2f;
     public float alturaDeslizamiento = 1f;
-    public Transform modelo3D; // 🆕 Asigna aquí tu personaje‑hijo 3D
+    public Transform modelo3D;
 
     [Header("Carcel")]
     public float tiempoCarcel = 10f;
@@ -64,9 +64,6 @@ public class RobotRunner2300Pro : MonoBehaviour
         
         if (textoContador != null)
             textoContador.gameObject.SetActive(false);
-
-        if (!Application.CanStreamedLevelBeLoaded(escenaCarcel))
-            Debug.LogError("¡Aviso! La escena '" + escenaCarcel + "' no está en Build Settings");
     }
 
     void Update()
@@ -86,9 +83,9 @@ public class RobotRunner2300Pro : MonoBehaviour
         if (!enSuelo && rb != null)
         {
             float alturaActual = transform.position.y - alturaInicioSalto;
-            if (alturaActual > alturaMaxSalto && rb.linearVelocity.y > 0)
+            if (alturaActual > alturaMaxSalto && rb.velocity.y > 0)
             {
-                rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
+                rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
             }
         }
 
